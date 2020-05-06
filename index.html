@@ -49,7 +49,7 @@ var names = [
 "CHEWBACCA",
 "FETT Boba",
 "KENOBI Obi-Wan",
-"OREGANA Leia, princess",
+"OREGANA Leia, księżniczka",
 "PALPATINE Sheev",
 "SKYWALKER Luke",
 "SOLO Han",
@@ -85,9 +85,13 @@ function draw() {
     var toprint = document.getElementById("textarea").value.split("\n");
 
 	context.drawImage(base_image, 0, 0);
+	context.font = "bolder 26px serif";
+	for (i=0; i < toprint.length; i++){
+		context.fillText("\u2610", 80, 202+38*i); 		
+	};
 	context.font = "bolder 18px serif";
 	for (i=0; i < toprint.length; i++){
-		context.fillText("\u2610    "+toprint[i].replace("*","").trim(), 80, 200+38*i); 		
+		context.fillText(toprint[i].replace("*","").trim(), 115, 200+38*i); 		
 	};
 	context.font = "16px serif";
 	for (i=0; i < toprint.length; i++){
@@ -123,22 +127,19 @@ canvas.toBlob(function(blob) {
 
 </script>
 
+<div class="page-header">
+  <h1>Generator kart wyborczych</h1>
+</div>
+
 
 <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			<h3>
-				Generator kart wyborczych
-			</h3>
-		</div>
-	</div>
+
 	<div class="row">
 		<div class="col-md-6" >
 
 <form>
 <div class="form-group">
   
-  <label>Kandydaci</label><BR>
 	<textarea id="textarea" rows="10" class="form-control" onchange="draw()" onkeyup="draw()"></textarea>
 
   </div>
@@ -165,7 +166,15 @@ canvas.toBlob(function(blob) {
 			
 			
 </form>			
-<BR><BR>
+<BR>
+
+<div class="alert alert-secondary" role="alert">
+Masz pomysł na nową listę nazwisk? Zrób pull request do <a href="https://github.com/generatorkartwyborczych/generatorkartwyborczych.github.io">tego projektu</a>
+<BR>Jeśli nie umiesz, wyślij ją na <a href="mailto:generatorkartwyborczych@gmail.com" target="_blank" >generatorkartwyborczych@gmail.com</a>
+<BR><BR>Umiesz we frontend i Bootstrapa? Pomóż uczynić tę stronę ładniejszą!
+</div>
+
+<BR>
 
 <a id="download" download="image.png">
 <button type="button" class="btn btn-outline-danger btn-lg btn-block" onclick="download()">Zapisz obrazek</button>			
