@@ -5,13 +5,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+<meta property="og:url"                content="https://generatorkartwyborczych.github.io" />
+<meta property="og:title"              content="Generator kart wyborczych" />
+<meta property="og:description"        content="Pomóż Poczcie Polskiej, sam wygeneruj sobie kartę wyborczą!" />
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Generator kart wyborczych</title>
   </head>
   <body>
 
+<script src="reimg.js"></script>
 
 <script>
 
@@ -118,9 +123,10 @@ base_image.onload = function(){
 function download(){
 
 	var canvas = document.getElementById("canvas");
-	var dt = canvas.toDataURL('image/jpeg');
-	this.href = dt;
-
+	var link = document.createElement('a');
+	link.download = "kartadoglosowania.png";
+	link.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");;
+	link.click();
 }
 
 </script>
@@ -174,9 +180,8 @@ Masz pomysł na nową listę nazwisk? Zrób pull request do <a href="https://git
 
 <BR>
 
-<a id="download" download="kartadoglosowania.jpg">
+
 <button type="button" class="btn btn-outline-danger btn-lg btn-block" onclick="download()">Zapisz obrazek</button>			
-</a>
 			
 			
 		</div>
