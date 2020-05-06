@@ -1,7 +1,198 @@
-<!DOCTYPE html>
-<html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+
+<script src="FileSaver.min.js"></script> 
+
+<script>
+
+
+var names = [
+[
+"BIEDROŃ Robert",
+"BOSAK Krzysztof",
+"DUDA Andrzej Sebastian",
+"HOŁOWNIA Szymon Franciszek",
+"JAKUBIAK Marek",
+"KIDAWA-BŁOŃSKA Małgorzata Maria",
+"KOSINIAK-KAMYSZ Władysław Marcin",
+"PIOTROWSKI Mirosław Mariusz",
+"TATAJNO Paweł Jan",
+"ŻÓŁTEK Stanisław Józef"
+],
+
+[
+"BIEDROŃ Robert",
+"BOSAK Krzysztof",
+"*DUDA Andrzej Sebastian",
+"HOŁOWNIA Szymon Franciszek",
+"JAKUBIAK Marek",
+"KIDAWA-BŁOŃSKA Małgorzata Maria",
+"KOSINIAK-KAMYSZ Władysław Marcin",
+"PIOTROWSKI Mirosław Mariusz",
+"TATAJNO Paweł Jan",
+"ŻÓŁTEK Stanisław Józef"
+],
+
+[
+"CALRISSIAN Lando",
+"CHEWBACCA",
+"FETT Boba",
+"KENOBI Obi-Wan",
+"OREGANA Leia, princess",
+"PALPATINE Sheev",
+"SKYWALKER Luke",
+"SOLO Han",
+"TARKIN Wilhuff",
+"VADER Darth",
+"YODA"
+],
+
+["ANIOŁ Stanisław",
+"DYRMAN Zdzisław, zasadniczo",
+"HOCHWANDER Jan",
+"JARZYNA ZE SZCZECINA Krzysztof",
+"MAMOŃ Inżynier",
+"OCHÓDZKI Ryszard",
+"PALUCH Stanisław",
+"PSIKUTA Jarosław",
+"SIARZEWSKI \"SIARA\" Stefan",
+"SIDOROWSKI Bardzo Mi Przykro"],
+
+
+
+
+]; 
+
+var base_image = new Image();
+var check = new Image();
+check.src = "check.png";
+
+function draw() {
+	document.getElementById("canvas");
+	context     = canvas.getContext('2d');
+
+    var toprint = document.getElementById("textarea").value.split("\n");
+
+	context.drawImage(base_image, 0, 0);
+	context.font = "bolder 18px serif";
+	for (i=0; i < toprint.length; i++){
+		context.fillText("\u2610    "+toprint[i].replace("*","").trim(), 80, 200+38*i); 		
+	};
+	context.font = "16px serif";
+	for (i=0; i < toprint.length; i++){
+		context.fillText((i<9?"0":"")+(i+1)+".", 57, 200+38*i); 		
+		if(toprint[i].includes("*")){
+		  context.drawImage(check, 77, 200+38*i-20);
+		}
+	};
+	
+		
+			
+}
+
+
+function refresh(i){
+  document.getElementById('textarea').value = names[i].join('\n');
+  draw(i);
+}
+
+base_image.src = "karta.jpg";
+base_image.onload = function(){
+ refresh(0);
+}
+
+function download(){
+
+var canvas = document.getElementById("canvas");
+canvas.toBlob(function(blob) {
+    saveAs(blob, "prettyimage.png");
+});
+
+}
+
+</script>
+
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<h3>
+				Generator kart wyborczych
+			</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6" >
+
+<form>
+<div class="form-group">
+  
+  <label>Kandydaci</label><BR>
+	<textarea id="textarea" rows="10" class="form-control" onchange="draw()" onkeyup="draw()"></textarea>
+
+  </div>
+  <div class="form-group">
+  
+
+  </div>
+  
+			<button type="button" class="btn" onclick="refresh(0)">
+				Kandydaci
+			</button>
+  
+			<button type="button" class="btn" onclick="refresh(1)">
+				Kandydaci ze wskazaniem
+			</button>
+			
+			<button type="button" class="btn" onclick="refresh(2)">
+				Star Wars
+			</button>
+						
+			<button type="button" class="btn" onclick="refresh(3)">
+				Fachowcy
+			</button>
+			
+			
+</form>			
+<BR><BR>
+
+<a id="download" download="image.png">
+<button type="button" class="btn btn-outline-danger btn-lg btn-block" onclick="download()">Zapisz obrazek</button>			
+</a>
+			
+			
+		</div>
+		<div class="col-md-6">
+<div id="canvasContainer">
+    <canvas id="canvas" height="865" width="615"></canvas>
+</div>		
+			
+			
+		</div>
+	</div>
+</div>
+
+        <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+<script>
+
+
+</script>
+	
+  </body>
 </html>
