@@ -12,7 +12,6 @@
   </head>
   <body>
 
-<script src="FileSaver.min.js"></script> 
 
 <script>
 
@@ -118,10 +117,9 @@ base_image.onload = function(){
 
 function download(){
 
-var canvas = document.getElementById("canvas");
-canvas.toBlob(function(blob) {
-    saveAs(blob, "kartadoglosowania.jpg");
-});
+	var canvas = document.getElementById("canvas");
+	var dt = canvas.toDataURL('image/jpeg');
+	this.href = dt;
 
 }
 
@@ -176,7 +174,7 @@ Masz pomysł na nową listę nazwisk? Zrób pull request do <a href="https://git
 
 <BR>
 
-<a id="download" download="image.png">
+<a id="download" download="kartadoglosowania.jpg">
 <button type="button" class="btn btn-outline-danger btn-lg btn-block" onclick="download()">Zapisz obrazek</button>			
 </a>
 			
